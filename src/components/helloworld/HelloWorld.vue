@@ -47,9 +47,17 @@ const form = reactive({
 const onSubmit = () => {
   console.log('submit!')
   axios({
-    method:"post",
-    url:"//填入接口地址",
-    data:{value:this.value}
+    method:"POST",
+    url:"http://127.0.0.1:9000/activity/detail",
+    data:JSON.stringify({
+      'activity_id':form.activity_id
+    }),
+    headers:{
+      'content-type':"application/json",
+      'Cuuserref':form.cuuseref,
+      'St_flpv':form.st_flpv,
+      'Cusut':form.cusut
+    }
 }).then(res=>{
     console.log(res)
   })
