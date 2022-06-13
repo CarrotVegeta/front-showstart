@@ -1,14 +1,19 @@
 <template>
-  <HelloWorld/>
+  <CookieVue/>
+  <ActivityDetailVue/>
+  <TicketList/>
 </template>
 
 <script>
-import HelloWorld from './components/helloworld/HelloWorld.vue'
-
+import CookieVue from "@/components/Cookie";
+import ActivityDetailVue from "@/components/ActivityDetail";
+import TicketList from "@/components/TicketList";
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    CookieVue,
+    ActivityDetailVue,
+    TicketList
   }
 }
 </script>
