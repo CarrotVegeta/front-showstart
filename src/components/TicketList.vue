@@ -41,11 +41,14 @@ import Cookie from "@/router";
 const form = reactive({
   activity_id: '',
 })
-let tableData = []
-let onSubmit = async () => {
+const tableData = reactive([])
+const onSubmit = async () => {
   console.log('submit!')
-  tableData = await Cookie.methods.GetTicketList(form.activity_id);
-  console.log(tableData)
+
+  const res = await Cookie.methods.GetTicketList(form.activity_id);
+  res.forEach(item=>{
+    tableData.push(item)
+  })
 }
 
 </script>
