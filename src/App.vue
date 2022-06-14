@@ -13,7 +13,7 @@ export default {
   components: {
     CookieVue,
     ActivityDetailVue,
-    TicketList
+    TicketList,
   }
 }
 </script>
