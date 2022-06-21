@@ -4,3 +4,6 @@ export const  GetTicketList = (data) =>{
     return POST("tickets",data)
 }
 
+export const Order = (data) => {
+    return POST("order",data)
+}

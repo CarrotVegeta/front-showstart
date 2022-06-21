@@ -7,13 +7,15 @@
 <script setup>
 
 // eslint-disable-next-line no-undef
+import {Order} from "@/api/ticket";
+
 const props = defineProps({
   ticket:Object
 })
 
 const start = async () => {
   console.log('submit!')
-  const res = await GetActivityDetail({activity_id:props.ticket.activity_id})
+  const res = await Order({activity_id:props.ticket.activity_id,ticket_id:props.ticket.ticket_id})
   console.log(res)
 }
 </script>

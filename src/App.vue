@@ -1,7 +1,7 @@
 <template>
-  <CookieVue/>
-  <ActivityDetailVue/>
-  <TicketList/>
+  <CookieVue />
+  <ActivityDetailVue />
+  <TicketList />
 </template>
 
 <script>
