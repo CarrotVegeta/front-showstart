@@ -32,7 +32,7 @@ export default {
 
 
 <script setup>
-import {reactive, ref} from "vue";
+import {ref} from "vue";
 import {ElMessage, ElTable} from 'element-plus'
 import {GetTicketList} from "@/api/ticket";
 
@@ -55,10 +55,10 @@ const onSubmit = async () => {
   })
 }
 
-let ticket = reactive({})
+let ticket = ref({})
 const handleCurrentChange = (val) => {
-  ticket = val
-  ticket.activity_id = props.activity_id
+  ticket.value = val
+  ticket.value.activity_id = props.activity_id
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
