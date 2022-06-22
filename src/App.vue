@@ -1,19 +1,16 @@
 <template>
   <CookieVue />
   <ActivityDetailVue />
-  <TicketList />
 </template>
 
 <script>
 import CookieVue from "@/components/Cookie";
 import ActivityDetailVue from "@/components/ActivityDetail";
-import TicketList from "@/components/TicketList";
 export default {
   name: 'App',
   components: {
     CookieVue,
     ActivityDetailVue,
-    TicketList,
   }
 }
 </script>
