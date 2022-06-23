@@ -79,7 +79,7 @@ const getTicketListDetail = async () => {
   if (res.data.error !== "") {
     ElMessage.error(res.data.error)
   }
-  console.log(res.data)
+  console.log("dkfkds",res.data)
   res.data.data.forEach(item => {
     tableData.value.push(item)
   })

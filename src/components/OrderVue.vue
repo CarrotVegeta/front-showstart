@@ -35,7 +35,7 @@
 // eslint-disable-next-line no-undef
 import {Order} from "@/api/ticket";
 import {ElMessage} from "element-plus";
-import {reactive, ref} from "vue";
+import {nextTick,  reactive, ref} from "vue";
 import {getNowTime} from "@/utils/date";
 
 const orderSettings = ref({
@@ -88,6 +88,7 @@ const startOrder=async () => {
   }
   const msg = getNowTime() + ":" + res.data.data
   result.msgs.push(msg)
+  scrollToBottom();
   if (res.data.data === "抢票成功") {
     orderNum++
     if (orderNum === orderSettings.value.order_num) {
@@ -95,6 +96,15 @@ const startOrder=async () => {
     }
   }
 }
+//滚动条保持最底部方法
+const scrollToBottom =()=> {
+  nextTick(() => {
+    let container = document.querySelector(".result");
+    container.scrollTop = container.scrollHeight;
+  })
+}
+
+
 </script>
 
 <style scoped>
