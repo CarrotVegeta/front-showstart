@@ -22,6 +22,7 @@
       highlight-current-row
       style="width: 100%"
       @current-change="handleCurrentChange"
+      :hidden="!tableData.length"
   >
     <el-table-column prop="session_id" label="SessionID" width="180"/>
     <el-table-column prop="ticket_id" label="TicketID" width="180"/>
@@ -79,7 +80,6 @@ const getTicketListDetail = async () => {
   if (res.data.error !== "") {
     ElMessage.error(res.data.error)
   }
-  console.log("dkfkds",res.data)
   res.data.data.forEach(item => {
     tableData.value.push(item)
   })

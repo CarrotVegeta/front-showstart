@@ -21,9 +21,9 @@
     <div class="log_title">
       <h1>日志输出:</h1>
     </div>
-    <div class="result" >
+    <div class="result">
       <div>准备开始抢票====================>>>>>></div>
-      <div  v-for="item in result.msgs" v-bind:key="item.index">
+      <div v-for="item in result.msgs" v-bind:key="item.index">
         {{ item }}
       </div>
     </div>
@@ -35,7 +35,7 @@
 // eslint-disable-next-line no-undef
 import {Order} from "@/api/ticket";
 import {ElMessage} from "element-plus";
-import {nextTick,  reactive, ref} from "vue";
+import {nextTick, reactive, ref} from "vue";
 import {getNowTime} from "@/utils/date";
 
 const orderSettings = ref({
@@ -43,7 +43,7 @@ const orderSettings = ref({
   order_num: 1,
   telephone: "",
   activity_id: 0,
-  ticker:200,
+  ticker: 200,
   ticket_id: 0,
   goods_type: 0,
   sky_type: 0,
@@ -58,14 +58,12 @@ const result = reactive({
 const props = defineProps({
   ticket: {}
 })
-let timer = ref(null)
-
+let next = true
 let orderNum = 0
 const stop = () => {
-  clearInterval(timer.value)
-  timer.value = null
+  next = false
 }
-const start =  () => {
+const start = () => {
   console.log('submit!')
   orderSettings.value.activity_id = props.ticket.activity_id
   orderSettings.value.ticket_id = props.ticket.ticket_id
@@ -74,16 +72,16 @@ const start =  () => {
   orderSettings.value.selling_price = props.ticket.selling_price
   orderSettings.value.session_id = props.ticket.session_id
   result.msgs = []
+  next = true
   startOrder()
-  timer.value = setInterval(async () => {
-    await startOrder()
-  },orderSettings.value.ticker)
 }
-const startOrder=async () => {
+const startOrder = async () => {
+  if (!next) {
+    return
+  }
   const res = await Order(orderSettings.value)
   if (res.data.error !== "") {
     ElMessage.error(res.data.error)
-    stop()
     return
   }
   const msg = getNowTime() + ":" + res.data.data
@@ -92,12 +90,16 @@ const startOrder=async () => {
   if (res.data.data === "抢票成功") {
     orderNum++
     if (orderNum === orderSettings.value.order_num) {
-      stop()
+      next = false
+      return
     }
   }
+  setTimeout(() => {
+    startOrder()
+  }, orderSettings.value.ticker)
 }
 //滚动条保持最底部方法
-const scrollToBottom =()=> {
+const scrollToBottom = () => {
   nextTick(() => {
     let container = document.querySelector(".result");
     container.scrollTop = container.scrollHeight;
@@ -109,21 +111,23 @@ const scrollToBottom =()=> {
 
 <style scoped>
 .result {
-  overflow-y:auto;
+  overflow-y: auto;
   height: 15rem;
   text-align: left;
-  border:1px solid aliceblue;
+  border: 1px solid aliceblue;
   border-radius: 5px;
   margin-left: 4rem;
   padding-left: 0.5rem;
   background-color: black;
   color: aliceblue;
 }
-.orderSettings{
+
+.orderSettings {
   padding-top: 2rem;
   margin-bottom: 10rem;
 }
-.log_title{
+
+.log_title {
   text-align: left;
   margin-left: 4rem;
 }
