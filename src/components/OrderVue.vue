@@ -82,8 +82,6 @@ const startOrder = async () => {
     const res = await Order(orderSettings.value)
     let msg = getNowTime() + ":" + res.data.data;
     if (res.data.error !== "") {
-        // ElMessage.error(res.data.error)
-        // return
         msg = getNowTime() + ":" + res.data.error
     }
     result.msgs.push(msg)
