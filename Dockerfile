@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 paketobuildpacks/nodejs:latest AS build
+FROM node:alpine  AS build
 WORKDIR /usr/src/
 COPY . .
 ARG PROJECT=showstart
