@@ -10,7 +10,6 @@ RUN npm install cnpm -g --registry=https://registry.npm.taobao.org \
 && cnpm run build \
 && sed -i '/"ip"/c "ip": ""' /usr/src/${MANUALA}
 
-RUN if [ "$PROJECT" = "aimrsk" ];then cd /usr/src/view && cnpm install && cnpm run build ;else echo 'no addon'; fi
 
 FROM nginx:latest AS products
 ARG DEPENDENCIES=nginx-conf/conf

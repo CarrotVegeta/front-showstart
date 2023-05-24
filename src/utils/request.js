@@ -1,7 +1,7 @@
 import axios from "axios";
 import store from "@/store";
 
-let baseURL = 'http://127.0.0.1:8000/'
+let baseURL = 'http://127.0.0.1:8000/api/'
 const axiosObj = axios.create({
     baseURL: baseURL,
     timeout: 99999
