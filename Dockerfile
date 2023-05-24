@@ -8,7 +8,6 @@ ARG MANUALA=dist/static/config.json
 RUN npm install cnpm -g --registry=https://registry.npm.taobao.org \
 && cnpm install \
 && cnpm run build \
-&& sed -i '/"ip"/c "ip": ""' /usr/src/${MANUALA}
 
 
 FROM nginx:latest AS products
