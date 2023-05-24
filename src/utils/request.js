@@ -4,7 +4,7 @@ import store from "@/store";
 
 // let baseURL = 'http://127.0.0.1:8000/api/'
 const axiosObj = axios.create({
-    baseURL: "/",
+    baseURL: "/api/",
     timeout: 99999
 })
 // http request 拦截器

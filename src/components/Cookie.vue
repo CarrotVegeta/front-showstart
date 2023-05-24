@@ -32,9 +32,9 @@ import {SetCookie} from "@/utils/request";
 import {reactive} from "vue";
 
 const form = reactive({
-  st_flpv:'4u2mk6jWoe6C11eLJuvk',
-  cusut:'ce618bcfc4c46b74a68de4c70b322aed',
-  cuuserref:'961007ea504e70a7e5a902c5be803c3d'
+  st_flpv:'',
+  cusut:'',
+  cuuserref:''
 })
 const onSubmit = () => {
   SetCookie(form)
