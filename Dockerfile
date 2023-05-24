@@ -7,7 +7,7 @@ ARG DEPENDENCIES=nginx-conf/conf
 ARG MANUALA=dist/static/config.json
 RUN npm install cnpm -g --registry=https://registry.npm.taobao.org \
 && cnpm install \
-&& cnpm run build \
+&& cnpm run build
 
 
 FROM nginx:latest AS products
