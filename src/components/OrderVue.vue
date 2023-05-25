@@ -1,6 +1,6 @@
 <template>
     <div class="orderSettings">
-        <el-form :model="orderSettings" label-width="120px">
+        <el-form :model="orderSettings" label-position="top" label-width="auto">
             <el-form-item label="订单张数">
                 <el-input v-model.number="orderSettings.ticket_num"/>
             </el-form-item>
@@ -115,7 +115,7 @@ const scrollToBottom = () => {
     text-align: left;
     border: 1px solid aliceblue;
     border-radius: 5px;
-    margin-left: 4rem;
+    /*margin-left: 4rem;*/
     padding-left: 0.5rem;
     background-color: black;
     color: aliceblue;
@@ -128,6 +128,6 @@ const scrollToBottom = () => {
 
 .log_title {
     text-align: left;
-    margin-left: 4rem;
+    /*margin-left: 4rem;*/
 }
 </style>

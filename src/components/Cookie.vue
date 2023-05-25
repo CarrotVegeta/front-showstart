@@ -1,5 +1,5 @@
 <template>
-    <el-form :model="form" label-width="120px">
+    <el-form :model="form" label-position="top" label-width="auto">
       <el-form-item label="st_flpv">
         <el-input v-model="form.st_flpv" />
       </el-form-item>

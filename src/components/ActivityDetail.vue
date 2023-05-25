@@ -1,5 +1,5 @@
 <template>
-    <el-form :model="form" label-width="120px">
+    <el-form :model="form" label-position="top" label-width="auto">
       <el-form-item label="演出id">
         <el-input v-model.number="form.activity_id" />
       </el-form-item>
