@@ -1,0 +1,57 @@
+<template>
+    <div class="title">
+        <h1>请选择观演人:{{props.ticket.type}}</h1>
+    </div>
+    <el-table
+            class="spectatorList"
+            ref="singleTableRef"
+            :data="tableData"
+            highlight-current-row
+            style="width: 100%"
+            @current-change="handleCurrentChange"
+            :hidden="!tableData.length"
+    >
+        <el-table-column prop="id" label="ID" width="180"/>
+        <el-table-column prop="name" label="姓名" width="180"/>
+        <el-table-column prop="user_id" label="用户id" width="180"/>
+    </el-table>
+</template>
+
+<script setup>
+import {GetSpectator} from "@/api/spectator";
+import {ElMessage} from "element-plus";
+import {ref} from "vue";
+
+const props = defineProps({
+    ticket: {}
+})
+const tableData = ref([])
+if (props.ticket.type===2) {
+    GetSpectatorList()
+}
+const GetSpectatorList = async () => {
+    tableData.value = []
+    const res = await GetSpectator();
+    if (res.data.error !== "") {
+        ElMessage.error(res.data.error)
+    }
+    res.data.data.forEach(item => {
+        tableData.value.push(item)
+    })
+}
+
+let spectator = ref({})
+const handleCurrentChange = (val) => {
+    spectator.value = val
+}
+</script>
+
+<style scoped>
+.spectatorList {
+    padding-left: 4rem;
+}
+.title {
+    text-align: left;
+    /*margin-left: 4rem;*/
+}
+</style>

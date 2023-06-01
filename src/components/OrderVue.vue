@@ -32,9 +32,7 @@
 
 <script setup>
 
-// eslint-disable-next-line no-undef
 import {Order} from "@/api/ticket";
-// import {ElMessage} from "element-plus";
 import {nextTick, reactive, ref} from "vue";
 import {getNowTime} from "@/utils/date";
 

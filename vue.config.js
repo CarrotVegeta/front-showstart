@@ -10,16 +10,16 @@ module.exports = {
     // 自动打开浏览器
     open: false,
     // 用于配置反向代理
-    // proxy: {
-    //   // 代理请求， 匹配所有以/api开头的请求
-    //   '/': {
-    //     // 目标服务器，所有以/api开头的请求接口代理到目标服务器
-    //     target: 'http://showstart:8000',
-    //     // 重写路径，此时用于匹配反向代理的/api可以替换为空
-    //     // pathRewrite: { '/': '' },
-    //     // 如果代理到HTTPS服务器需要设置secure为true，默认为false
-    //     secure: true
-    //   }
-    // }
+    proxy: {
+      // 代理请求， 匹配所有以/api开头的请求
+      '/api': {
+        // 目标服务器，所有以/api开头的请求接口代理到目标服务器
+        target: 'http://127.0.0.1:8000',
+        // 重写路径，此时用于匹配反向代理的/api可以替换为空
+        pathRewrite: { '/api': '' },
+        // 如果代理到HTTPS服务器需要设置secure为true，默认为false
+        secure: true
+      }
+    }
   }
 }
