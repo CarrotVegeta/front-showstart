@@ -1,6 +1,6 @@
 <template>
     <div class="title">
-        <h1>请选择观演人:{{props.ticket.type}}</h1>
+        <h1>观演人(如果没有显示去app添加):</h1>
     </div>
     <el-table
             class="spectatorList"
@@ -21,14 +21,13 @@
 import {GetSpectator} from "@/api/spectator";
 import {ElMessage} from "element-plus";
 import {ref} from "vue";
+import { onMounted } from 'vue'
 
-const props = defineProps({
-    ticket: {}
-})
+
 const tableData = ref([])
-if (props.ticket.type===2) {
+onMounted(() => {
     GetSpectatorList()
-}
+})
 const GetSpectatorList = async () => {
     tableData.value = []
     const res = await GetSpectator();

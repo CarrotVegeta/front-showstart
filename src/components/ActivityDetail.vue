@@ -14,7 +14,9 @@
     </el-carousel>
     <div v-html="detail.document">
     </div>
-
+    <div class="ticket_title" v-if="tableData.length">
+        <h1>票:</h1>
+    </div>
     <el-table
             class="ticketList"
             ref="singleTableRef"
@@ -30,8 +32,12 @@
         <el-table-column prop="selling_price" label="价格" width="180"/>
         <el-table-column prop="show_time" label="演出时间" width="180"/>
     </el-table>
-    <OrderVue v-if="tableData.length" :ticket="ticket"/>
-    <SpectatorVue v-if="tableData.value[0].type===2" :ticket="ticket"/>
+    <div v-if="ticketType">
+        <SpectatorVue  :ticket="ticket"/>
+    </div>
+    <div v-if="tableData.length">
+        <OrderVue :ticket="ticket"/>
+    </div>
 </template>
 
 
@@ -74,7 +80,7 @@ const onSubmit = async () => {
 
 
 const tableData = ref([])
-
+let ticketType = ref(false)
 const getTicketListDetail = async () => {
     console.log('submit!')
     tableData.value = []
@@ -84,6 +90,9 @@ const getTicketListDetail = async () => {
     }
     res.data.data.forEach(item => {
         tableData.value.push(item)
+        if (item.type===2){
+            ticketType.value=true
+        }
     })
 }
 let ticket = ref({})
@@ -98,5 +107,9 @@ const handleCurrentChange = (val) => {
     padding-left: 4rem;
 }
 
+.ticket_title {
+    text-align: left;
+    /*margin-left: 4rem;*/
+}
 
 </style>
