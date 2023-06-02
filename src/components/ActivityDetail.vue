@@ -57,7 +57,7 @@ export default {
 
 <script setup>
 
-import {nextTick, reactive, ref, watch} from "vue";
+import {nextTick, reactive, ref} from "vue";
 import {GetActivityDetail} from "@/api/activity";
 import {ElMessage} from "element-plus";
 import {GetTicketList} from "@/api/ticket";
@@ -80,6 +80,7 @@ const onSubmit = async () => {
 
 const tableData = ref([])
 let ticketType = ref(false)
+let ticketTypeVisible = ref(false)
 const getTicketListDetail = async () => {
     console.log('submit!')
     tableData.value = []
@@ -93,17 +94,14 @@ const getTicketListDetail = async () => {
             ticketType.value=true
         }
     })
-}
-let ticketTypeVisible = ref(false)
-watch(() => form.activity_id, () => {
-    console.log(ticketType.value)
     if (ticketType.value===true&&ticketTypeVisible.value===true) {
         ticketTypeVisible.value = false
     }
-    nextTick(() => {
+    await nextTick(() => {
         ticketTypeVisible.value = ticketType.value
     })
-});
+}
+
 
 let ticket = ref({})
 const handleCurrentChange = (val) => {

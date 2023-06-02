@@ -11,9 +11,8 @@
             @current-change="handleCurrentChange"
             :hidden="!tableData.length"
     >
-        <el-table-column prop="id" label="ID" width="180"/>
         <el-table-column prop="name" label="姓名" width="180"/>
-        <el-table-column prop="user_id" label="用户id" width="180"/>
+        <el-table-column prop="showDocumentNumber" label="身份证" width="180"/>
     </el-table>
 </template>
 
