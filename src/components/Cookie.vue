@@ -1,4 +1,7 @@
 <template>
+    <div class="title">
+        <h2>请设置用户相关信息:</h2>
+    </div>
     <el-form :model="form" label-position="top" label-width="auto">
       <el-form-item label="st_flpv">
         <el-input v-model="form.st_flpv" />
@@ -40,3 +43,9 @@ const onSubmit = () => {
   SetCookie(form)
 }
 </script>
+<style scoped>
+.title {
+    text-align: left;
+    /*margin-left: 4rem;*/
+}
+</style>

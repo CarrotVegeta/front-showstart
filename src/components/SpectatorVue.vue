@@ -1,6 +1,6 @@
 <template>
     <div class="title">
-        <h1>观演人(如果没有显示去app添加):</h1>
+        <h2>观演人(如果没有显示去app添加):</h2>
     </div>
     <el-table
             class="spectatorList"

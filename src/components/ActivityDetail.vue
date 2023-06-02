@@ -15,7 +15,7 @@
     <div v-html="detail.document">
     </div>
     <div class="ticket_title" v-if="tableData.length">
-        <h1>票:</h1>
+        <h2>票(选一张):</h2>
     </div>
     <el-table
             class="ticketList"
@@ -32,7 +32,7 @@
         <el-table-column prop="selling_price" label="价格" width="180"/>
         <el-table-column prop="show_time" label="演出时间" width="180"/>
     </el-table>
-    <div v-if="ticketType">
+    <div v-if="ticketTypeVisible">
         <SpectatorVue  :ticket="ticket"/>
     </div>
     <div v-if="tableData.length">
@@ -57,11 +57,10 @@ export default {
 
 <script setup>
 
-import {reactive, ref} from "vue";
+import {nextTick, reactive, ref, watch} from "vue";
 import {GetActivityDetail} from "@/api/activity";
 import {ElMessage} from "element-plus";
 import {GetTicketList} from "@/api/ticket";
-
 
 const form = reactive({
     activity_id: 0,
@@ -95,6 +94,17 @@ const getTicketListDetail = async () => {
         }
     })
 }
+let ticketTypeVisible = ref(false)
+watch(() => form.activity_id, () => {
+    console.log(ticketType.value)
+    if (ticketType.value===true&&ticketTypeVisible.value===true) {
+        ticketTypeVisible.value = false
+    }
+    nextTick(() => {
+        ticketTypeVisible.value = ticketType.value
+    })
+});
+
 let ticket = ref({})
 const handleCurrentChange = (val) => {
     ticket.value = val

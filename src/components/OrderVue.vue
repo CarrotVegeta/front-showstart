@@ -19,7 +19,7 @@
             </el-form-item>
         </el-form>
         <div class="log_title">
-            <h1>日志输出:</h1>
+            <h2>日志输出:</h2>
         </div>
         <div class="result">
             <div>准备开始抢票====================>>>>>></div>
